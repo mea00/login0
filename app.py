@@ -89,6 +89,3 @@ def hello():
         flash("Bu sayfaya erişmek için lütfen giriş yapın.", "danger")
         return redirect(url_for('login'))
     return render_template('hello.html')
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5001) 
