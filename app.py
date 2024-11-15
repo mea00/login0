@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -8,9 +9,14 @@ from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+# Ortam değişkenine göre veritabanı yolunu ayarla
+if os.getenv("VERCEL_ENV") == "production":
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/users.db'
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Kullanıcı modeli
