@@ -46,6 +46,11 @@ def send_email(to_email):
     finally:
         server.quit()
 
+# Ana rota
+@app.route('/')
+def index():
+    return render_template('index.html')  # Ana sayfa olarak "index.html" kullanılacak
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
