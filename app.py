@@ -10,7 +10,7 @@ from sqlalchemy.exc import IntegrityError
 app = Flask(__name__)
 app.secret_key = 'secret_key'
 
-# veritabanı yolu ayarlama
+# Veritabanı yolu ayarlama
 if os.getenv("VERCEL_ENV") == "production":
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/users.db'
 else:
@@ -30,9 +30,9 @@ with app.app_context():
     db.create_all()
 
 def send_email(to_email):
-    sender_email = "c5cf304984339d"
-    password = "0bda298d2704d0"
-    
+    sender_email = "kayitmaili0@gmail.com"  
+    password = "deneme123"  
+
     msg = MIMEMultipart()
     msg["From"] = sender_email
     msg["To"] = to_email
@@ -42,9 +42,10 @@ def send_email(to_email):
     msg.attach(MIMEText(body, "plain"))
 
     try:
-        server = smtplib.SMTP("smtp.mailtrap.io", 587)
-        server.starttls()
-        server.login(sender_email, password)
+        # Gmail SMTP sunucusuna bağlanma
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()  # Güvenli bağlantı başlat
+        server.login(sender_email, password)  # Gmail kimlik doğrulama
         server.sendmail(sender_email, to_email, msg.as_string())
         print("E-posta başarıyla gönderildi.")
     except smtplib.SMTPException as e:
