@@ -17,6 +17,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            text-align: center;
         }
 
         /* Başlık ve alt metin */
@@ -36,6 +37,8 @@
         .button-container {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap; /* Mobilde taşmaları önler */
+            justify-content: center;
         }
 
         /* Buton stili */
@@ -68,6 +71,22 @@
         .login-btn:hover {
             background-color: #27ae60;
             transform: scale(1.05);
+        }
+
+        /* Mobil uyum */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+            }
         }
     </style>
 </head>
