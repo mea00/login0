@@ -30,8 +30,8 @@ with app.app_context():
     db.create_all()
 
 def send_email(to_email):
-    sender_email = "kayitmaili0@gmail.com"  
-    password = "deneme123"  
+    sender_email = "meadeneme00@gmail.com"  # Zoho e-posta adresiniz
+    password = "rX7j/v/fg@R98*/"  # Zoho Mail şifreniz
 
     msg = MIMEMultipart()
     msg["From"] = sender_email
@@ -42,14 +42,14 @@ def send_email(to_email):
     msg.attach(MIMEText(body, "plain"))
 
     try:
-        # Gmail SMTP sunucusuna bağlanma
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.starttls()  # Güvenli bağlantı başlat
-        server.login(sender_email, password)  # Gmail kimlik doğrulama
+        # Zoho SMTP sunucusuna bağlanma
+        server = smtplib.SMTP("smtp.zoho.com", 587)
+        server.starttls()  # Güvenli bağlantıyı başlat
+        server.login(sender_email, password)  # Zoho kimlik doğrulama
         server.sendmail(sender_email, to_email, msg.as_string())
         print("E-posta başarıyla gönderildi.")
-    except smtplib.SMTPException as e:
-        print("E-posta gönderilirken bir hata oluştu:", e)
+    except Exception as e:
+        print(f"E-posta gönderilirken bir hata oluştu: {e}")
     finally:
         server.quit()
 
