@@ -10,7 +10,7 @@ from sqlalchemy.exc import IntegrityError
 app = Flask(__name__)
 app.secret_key = 'secret_key'
 
-# Ortam değişkenine göre veritabanı yolunu ayarla
+# veritabanı yolu ayarlama
 if os.getenv("VERCEL_ENV") == "production":
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/users.db'
 else:
